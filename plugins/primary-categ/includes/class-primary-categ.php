@@ -39,17 +39,11 @@ class Primary_Categ {
 
 		$this->script_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		register_activation_hook( $this->file, array( $this, 'install' ) );
-
 		register_deactivation_hook( $this->file, array( $this, 'plugin_deactivated' ) );
 
 		// Load frontend JS & CSS.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
-
-		// Load admin JS & CSS.
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
