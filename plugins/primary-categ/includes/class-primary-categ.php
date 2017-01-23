@@ -56,6 +56,9 @@ class Primary_Categ {
 		$custom->register_cpt_events();
 		$custom->register_tax_events();
 
+		// Adds the SC from tha main file, to be used as a custom search.
+		add_shortcode( 'sc_quick_search_mod', array( $custom, 'quick_search_mod' ), 0 );
+
 		// Handle localisation.
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );

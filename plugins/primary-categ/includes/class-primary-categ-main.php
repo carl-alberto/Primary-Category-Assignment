@@ -16,8 +16,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Primary_Categ_Main {
 	/**
-	 * TODO: chnage function name and fill in blanks.
-	 * For Dashicons, see https://developer.wordpress.org/resource/dashicons
+	 * Generates a shortcode the custom searchbar.
+	 */
+	public function quick_search_mod() {
+		?>
+			<div class="search-form" >
+				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+				<button type="submit" class="sc-search-submit search-submit"><?php echo 'search' ; ?><span class="screen-reader-text"><?php echo esc_html( x( 'Search', 'submit button', 'primary-categ' ) ); ?></span></button>
+			</div>
+		<?php
+	}
+
+	/**
+	 * This registers the first CPT to be used as a Primary Category.
 	 */
 	public function register_cpt_events() {
 		$post_type = 'event'; // Normally lowercase with underscores.
@@ -51,7 +62,7 @@ class Primary_Categ_Main {
 	}
 
 	/**
-	 * TODO: change function name and fill in blanks.
+	 * Primary category taxonomy to be assigned to events CPT.
 	 */
 	public function register_tax_events() {
 		$taxonomy = 'primary-category';
