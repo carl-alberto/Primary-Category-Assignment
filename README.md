@@ -17,6 +17,7 @@
 	- Create at least 3 CPTs
 	- Add at least 3 different  Primary Category (taxonomy) under the CPT
 	- Add at another extra Primary Category (taxonomy) under the regular posts
+	- Make sure the taxonomy that is only tagged as primary category can be searched
 
 #Time Tracking
 	- Planning and strategy
