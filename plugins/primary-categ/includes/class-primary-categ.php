@@ -51,11 +51,6 @@ class Primary_Categ {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
-		// Load API for generic admin functions.
-		if ( is_admin() ) {
-			$this->admin = new Primary_Categ_Admin_API();
-		}
-
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
 		$custom->register_cpt_events();
@@ -157,56 +152,6 @@ class Primary_Categ {
 	public $pluginoptions;
 
 	/**
-	 * Load frontend CSS.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @return void
-	 */
-	public function enqueue_styles() {
-		wp_register_style( $this->_token . '-frontend', esc_url( $this->assets_url ) . 'css/frontend.css', array(), $this->_version );
-		wp_enqueue_style( $this->_token . '-frontend' );
-	} // End enqueue_styles ()
-
-	/**
-	 * Load frontend Javascript.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	public function enqueue_scripts() {
-		wp_register_script( $this->_token . '-frontend', esc_url( $this->assets_url ) . 'js/frontend' . $this->script_suffix . '.js', array( 'jquery' ), $this->_version );
-		wp_enqueue_script( $this->_token . '-frontend' );
-	} // End enqueue_scripts ()
-
-	/**
-	 * Load admin CSS.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @param	srting $hook Can be blank at the moment.
-	 * @return  void
-	 */
-	public function admin_enqueue_styles( $hook = '' ) {
-		wp_register_style( $this->_token . '-admin', esc_url( $this->assets_url ) . 'css/admin.css', array(), $this->_version );
-		wp_enqueue_style( $this->_token . '-admin' );
-	} // End admin_enqueue_styles ()
-
-	/**
-	 * Load admin Javascript.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @param	string $hook Can be blank at the moment.
-	 * @return  void
-	 */
-	public function admin_enqueue_scripts( $hook = '' ) {
-		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array( 'jquery' ), $this->_version );
-		wp_enqueue_script( $this->_token . '-admin' );
-	} // End admin_enqueue_scripts ()
-
-	/**
 	 * Load plugin localisation.
 	 *
 	 * @access  public
@@ -272,47 +217,6 @@ class Primary_Categ {
 	} // End __wakeup ()
 
 	/**
-	 * Installation. Runs on activation.
-	 * If reset option is still new meaning this is the first time th plugins is installed, it will call all the default values.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	public function install() {
-		$this->_log_version_number();
-		if ( ( empty( get_option( $this->base . 'cb_reset' ) ) ) ) {
-			$this->default_option_values();
-		}
-	} // End install ()
-
-	/**
-	 * This contains the default values.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	public function default_option_values() {
-		// assign ON to set checkboxes.
-		add_option( $this->base . 'cb_reset', '' );
-	}
-
-	/**
-	 *  Deletes all options in the specified array. Normally this is the place to reset your options.
-	 *
-	 * @access  public
-	 * @since   1.0.0
-	 * @param  array $option_names      names of the options to be deleted.
-	 * @return  void
-	 */
-	public function remove_all_options( $option_names ) {
-		foreach ( $option_names as $option_name ) {
-			delete_option( $option_name );
-		}
-	}
-
-	/**
 	 *  Runs when plugin is deactivated.
 	 *
 	 * @access  public
@@ -320,12 +224,6 @@ class Primary_Categ {
 	 * @return  void
 	 */
 	public function plugin_deactivated() {
-		if ( ! empty( get_option( $this->base . 'cb_reset' ) ) ) {
-			$option_names = array(
-					$this->base . 'cb_reset',
-				);
-			$this->remove_all_options( $option_names );
-		}
 	}
 
 	/**
