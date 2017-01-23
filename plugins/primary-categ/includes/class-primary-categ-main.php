@@ -19,11 +19,11 @@ class Primary_Categ_Main {
 	 * TODO: chnage function name and fill in blanks.
 	 * For Dashicons, see https://developer.wordpress.org/resource/dashicons
 	 */
-	public function register_cpt1() {
-		$post_type = ''; // Normally lowercase with underscores.
-		$plural = '';
-		$single = '';
-		$description = '';
+	public function register_cpt_events() {
+		$post_type = 'event'; // Normally lowercase with underscores.
+		$plural = 'Events';
+		$single = 'Event';
+		$description = 'This will list all sample events';
 
 		$options = array(
 			'public' => true,
@@ -44,7 +44,7 @@ class Primary_Categ_Main {
 	  		'rest_controller_class' => 'WP_REST_Posts_Controller',
 			'supports' => array( 'title', 'editor', 'excerpt', 'comments', 'thumbnail' ),
 			'menu_position' => 5,
-			'menu_icon' => 'dashicons-admin-post',
+			'menu_icon' => 'dashicons-welcome-view-site',
 		);
 
 		$this->register_post_type( $post_type, $plural, $single, $description, $options );
@@ -53,11 +53,11 @@ class Primary_Categ_Main {
 	/**
 	 * TODO: change function name and fill in blanks.
 	 */
-	public function register_taxonomy1() {
-		$taxonomy = '';
-		$plural = '';
-		$single = '';
-		$post_types = array( '' );
+	public function register_tax_events() {
+		$taxonomy = 'primary-category';
+		$plural = 'Primary Categories';
+		$single = 'Primary Category';
+		$post_types = array( 'event' );
 
 		$taxonomy_args = array(
 			'hierarchical' => true,

@@ -56,9 +56,10 @@ class Primary_Categ {
 			$this->admin = new Primary_Categ_Admin_API();
 		}
 
-//		$custom = new Primary_Categ_Main;
-//		$custom->register_taxonomy1();
-//		$custom->register_cpt1();
+		// Adding a primamry Category for a sample post type called 'event'.
+		$custom = new Primary_Categ_Main;
+		$custom->register_cpt_events();
+		$custom->register_tax_events();
 
 		// Handle localisation.
 		$this->load_plugin_textdomain();
