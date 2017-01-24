@@ -15,9 +15,9 @@
 
 #Test Cases
 	- Create at least 3 CPTs
-	- Add at least 3 different  Primary Category (taxonomy) under the CPT
-	- Add at another extra Primary Category (taxonomy) under the regular posts
-	- Make sure the taxonomy that is only tagged as primary category can be searched
+	- Add at least 2 different Primary Category (taxonomy) which is assigned to each CPT
+	- Add at least 2 other extra Primary Category (taxonomy) under the regular posts & CPT which is not tagged as Primary Category
+	- Make sure the taxonomy that is only tagged as primary category can be searched from the front end
 
 #Time Tracking
 	- Planning and strategy

@@ -49,14 +49,14 @@ class Primary_Categ {
 		$custom->register_cpt_events();
 		$custom->register_tax_events();
 
-		// Adds the SC from tha main file, to be used as a custom search.
-		add_shortcode( 'sc_quick_search_mod', array( $custom, 'quick_search_mod' ), 0 );
-
 		// Ajax request start.
 		add_action( 'wp_ajax_pc_ajax_request', array( $this, 'pc_ajax_request' ), 0 );
 		add_action( 'wp_ajax_nopriv_pc_ajax_request', array( $this, 'pc_ajax_request' ), 0 );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_ajax_js' ), 0 );
+
+		// Adds the SC from tha main file, to be used as a custom search.
+		add_shortcode( 'sc_quick_search_mod', array( $custom, 'quick_search_mod' ), 0 );
 
 		// Handle localisation.
 		$this->load_plugin_textdomain();

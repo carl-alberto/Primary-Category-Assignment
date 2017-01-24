@@ -21,8 +21,8 @@ class Primary_Categ_Main {
 	public function quick_search_mod() {
 		?>
 			<div class="search-form custom-search">
-				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="" name="s" />
-				<button type="submit" class="sc-search-submit search-submit"><?php echo 'search' ; ?><span class="screen-reader-text"><?php echo esc_html( x( 'Search', 'submit button', 'primary-categ' ) ); ?></span></button>
+				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="" />
+				<button type="submit" class="sc-search-submit search-submit"><?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?></button>
 			</div>
 		<?php
 	}
