@@ -43,8 +43,20 @@ class Primary_Categ {
 
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
-		$custom->register_cpt_events();
-		$custom->register_tax_events();
+		$custom->quick_register_cpt( 'event', 'Events', 'Event' );
+		$custom->quick_register_cpt( 'book', 'Books', 'Book' );
+		$custom->quick_register_cpt( 'animal', 'Animals', 'Animal' );
+
+		// Register taxonomies. This will be assigned below to be PRIMARY CATEGORIES.
+		$custom->quick_register_tax( 'primary-category', 'Primary Categories', 'Primary Category', array( 'event', 'post' ) );
+
+		// Register taxonomies. Tagged as NON primary.
+		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'event', 'post', 'book' ) );
+
+		// This array defines the primary categories.
+		$this->primary_categories_array = array(
+			'primary-category',
+		);
 
 		// Ajax request start.
 		add_action( 'wp_ajax_pc_ajax_request', array( $this, 'pc_ajax_request' ), 0 );
@@ -67,9 +79,7 @@ class Primary_Categ {
 	 */
 	public function pc_ajax_request() {
 		// Define your primary categories here.
-		$primary_group = array(
-			'primary-category',
-		);
+		$primary_group = $this->primary_categories_array;
 		$custom = new Primary_Categ_Main;
 		$custom->display_primary_categories( $primary_group );
 		die();
@@ -179,6 +189,15 @@ class Primary_Categ {
 	 * @since   1.0.0
 	 */
 	public $pluginoptions;
+
+	/**
+	 * Array for the primary categories.
+	 *
+	 * @var     array
+	 * @access  public
+	 * @since   1.0.0
+	 */
+	public $primary_categories_array;
 
 	/**
 	 * Load plugin localisation.

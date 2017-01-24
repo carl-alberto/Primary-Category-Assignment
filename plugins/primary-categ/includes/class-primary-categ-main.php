@@ -64,12 +64,13 @@ class Primary_Categ_Main {
 
 	/**
 	 * This registers the first CPT to be used as a Primary Category.
+	 *
+	 * @param string $post_type Name of post type.
+	 * @param string $plural plural Name of post type.
+	 * @param string $single singular Name of post type.
 	 */
-	public function register_cpt_events() {
-		$post_type = 'event'; // Normally lowercase with underscores.
-		$plural = 'Events';
-		$single = 'Event';
-		$description = 'This will list all sample events';
+	public function quick_register_cpt( $post_type, $plural, $single ) {
+		$description = 'Sample use only for quick registering cpts';
 
 		$options = array(
 			'public' => true,
@@ -97,14 +98,80 @@ class Primary_Categ_Main {
 	}
 
 	/**
-	 * Primary category taxonomy to be assigned to events CPT.
+	 * This registers the first CPT to be used as a Primary Category.
 	 */
-	public function register_tax_events() {
-		$taxonomy = 'primary-category';
+	public function register_sample_cpt1() {
+		$post_type = 'sample-cpt'; // Normally lowercase with underscores.
+		$plural = 'Sample CPTs';
+		$single = 'Sample CPT';
+		$description = 'This another sample CPT';
+
+		$options = array(
+			'public' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => false,
+			'show_ui' => true,
+			'show_in_menu' => true,
+			'show_in_nav_menus' => true,
+			'show_in_admin_bar' => true,
+			'query_var' => true,
+			'can_export' => true,
+			'rewrite' => true,
+			'capability_type' => 'post',
+			'has_archive' => true,
+			'hierarchical' => true,
+			'show_in_rest'       	=> true,
+			'rest_base'          	=> $post_type,
+			'rest_controller_class' => 'WP_REST_Posts_Controller',
+			'supports' => array( 'title', 'editor', 'excerpt', 'comments', 'thumbnail' ),
+			'menu_position' => 5,
+			'menu_icon' => 'dashicons-welcome-view-site',
+		);
+
+		$this->register_post_type( $post_type, $plural, $single, $description, $options );
+	}
+
+	/**
+	 * Primary category taxonomy to be assigned to events CPT.
+	 *
+	 * @param string $taxonomyname taxonomy name.
+	 * @param array  $post_types Post types allowed in this taxonommy.
+	 */
+	public function register_primarycat1( $taxonomyname, $post_types ) {
+		$taxonomy = $taxonomyname;
 		$plural = 'Primary Categories';
 		$single = 'Primary Category';
-		$post_types = array( 'event' );
 
+		$taxonomy_args = array(
+			'hierarchical' => true,
+			'public' => true,
+			'show_ui' => true,
+			'show_in_nav_menus' => true,
+			'show_tagcloud' => true,
+			'meta_box_cb' => null,
+			'show_admin_column' => true,
+			'show_in_quick_edit' => true,
+			'update_count_callback' => '',
+			'show_in_rest'          => true,
+			'rest_base'             => $taxonomy,
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+			'query_var' => $taxonomy,
+			'rewrite' => true,
+			'sort' => '',
+		);
+
+		$this->register_taxonomy( $taxonomy, $plural, $single, $post_types, $taxonomy_args );
+	}
+
+	/**
+	 * Primary category taxonomy to be assigned to events CPT.
+	 *
+	 * @param string $taxonomy taxonomy name.
+	 * @param string $plural taxonomy plural name.
+	 * @param string $single taxonomy singular name.
+	 * @param array  $post_types Post types allowed in this taxonommy.
+	 */
+	public function quick_register_tax( $taxonomy, $plural, $single, $post_types ) {
 		$taxonomy_args = array(
 			'hierarchical' => true,
 			'public' => true,
