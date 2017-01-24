@@ -41,9 +41,6 @@ class Primary_Categ {
 
 		register_deactivation_hook( $this->file, array( $this, 'plugin_deactivated' ) );
 
-		// Load frontend JS & CSS.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
-
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
 		$custom->register_cpt_events();

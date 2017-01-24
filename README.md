@@ -14,6 +14,8 @@
 	- Deploy a test server Pantheon with working code
 
 #Test Cases
+	- Shortcode to generate the custom search box [sc_quick_search_mod] <b>DONE</b>
+	- Added shortcode to a test page <b>DONE</b>
 	- Create at least 3 CPTs
 	- Add at least 2 different Primary Category (taxonomy) which is assigned to each CPT
 	- Add at least 2 other extra Primary Category (taxonomy) under the regular posts & CPT which is not tagged as Primary Category
