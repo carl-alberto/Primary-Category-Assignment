@@ -43,7 +43,6 @@ class Primary_Categ {
 
 		// Load frontend JS & CSS.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
 
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
@@ -53,10 +52,41 @@ class Primary_Categ {
 		// Adds the SC from tha main file, to be used as a custom search.
 		add_shortcode( 'sc_quick_search_mod', array( $custom, 'quick_search_mod' ), 0 );
 
+		// Ajax request start.
+		add_action( 'wp_ajax_pc_ajax_request', array( $this, 'pc_ajax_request' ), 0 );
+		add_action( 'wp_ajax_nopriv_pc_ajax_request', array( $this, 'pc_ajax_request' ), 0 );
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_ajax_js' ), 0 );
+
 		// Handle localisation.
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
-	} // End __construct ()
+	}
+
+	/**
+	 * This loads the ajax action request.
+	 *
+	 * @access  public
+	 */
+	public function pc_ajax_request() {
+		echo 'ajax ok';
+		die();
+	}
+
+	/**
+	 * This prepares the ajax entrypoint.
+	 *
+	 * @access  public
+	 */
+	public function load_ajax_js() {
+		wp_enqueue_script( 'ajax-script', plugin_dir_url( __FILE__ ) . '../assets/js/frontend.js', array( 'jquery' ) );
+		wp_localize_script( 'ajax-script', 'pc_ajax_object',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'site_search_url' => site_url(),
+			)
+		);
+	}
 
 	/**
 	 * The single instance of Primary_Categ.
