@@ -20,11 +20,44 @@ class Primary_Categ_Main {
 	 */
 	public function quick_search_mod() {
 		?>
-			<div class="search-form" >
-				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+			<div class="search-form custom-search">
+				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="" name="s" />
 				<button type="submit" class="sc-search-submit search-submit"><?php echo 'search' ; ?><span class="screen-reader-text"><?php echo esc_html( x( 'Search', 'submit button', 'primary-categ' ) ); ?></span></button>
 			</div>
 		<?php
+	}
+
+	/**
+	 *
+	 */
+	public function display_primary_categories( $primary_group = array() ) {
+		$args = array(
+		   'public'   => true,
+		);
+
+		$output = 'object';
+		$operator = 'and';
+		$post_types = get_post_types( $args, $output );
+
+		echo '<select id="alltaxonomies" class="dropdown-alltaxonomies">';
+		echo sprintf( '<option value="">SELECT FILTER BELOW</option>' );
+		foreach ( $post_types as $post_type ) {
+			$taxonomy_names = get_object_taxonomies( $post_type->name, 'objects' );
+			foreach ( $taxonomy_names as $taxonomy_name ) {
+				// We need to display taxonomies tagged as primary categories.
+				if ( in_array( $taxonomy_name->name, $primary_group, true ) ) {
+					echo sprintf( '<option disabled value="%1s">%2s(POST TYPE)</option>', esc_html( $post_type->name ), esc_html( $post_type->label ) );
+					$termitems = get_terms( array(
+						'taxonomy' => $taxonomy_name->name,
+						'hide_empty' => false,
+					) );
+					foreach ( $termitems as $term ) {
+						echo sprintf( '<option value="%1s--%2s--%3s">-%4s</option>', esc_html( $post_type->name ), esc_html( $taxonomy_name->name ), esc_html( $term->slug ), esc_html( $term->name ) );
+					}
+				}
+			}
+		}
+		echo '</select>';
 	}
 
 	/**

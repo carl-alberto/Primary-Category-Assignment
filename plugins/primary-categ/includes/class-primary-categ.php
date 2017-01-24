@@ -69,7 +69,12 @@ class Primary_Categ {
 	 * @access  public
 	 */
 	public function pc_ajax_request() {
-		echo 'ajax ok';
+		// Define your primary categories here;
+		$primary_group = array(
+			'primary-category',
+		);
+		$custom = new Primary_Categ_Main;
+		$custom->display_primary_categories( $primary_group );
 		die();
 	}
 
