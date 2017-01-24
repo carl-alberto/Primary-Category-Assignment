@@ -69,7 +69,7 @@ class Primary_Categ {
 	 * @access  public
 	 */
 	public function pc_ajax_request() {
-		// Define your primary categories here;
+		// Define your primary categories here.
 		$primary_group = array(
 			'primary-category',
 		);
@@ -85,7 +85,7 @@ class Primary_Categ {
 	 */
 	public function load_ajax_js() {
 		wp_enqueue_script( 'ajax-script', plugin_dir_url( __FILE__ ) . '../assets/js/frontend.js', array( 'jquery' ) );
-		wp_localize_script( 'ajax-script', 'pc_ajax_object',
+		wp_localize_script( 'ajax-script', 'pcAjaxObject',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'site_search_url' => site_url(),

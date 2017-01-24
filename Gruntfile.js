@@ -96,7 +96,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'csstest', 'Runs all CSS tasks.', [ 'stylelint' ] );
 
 	// JavaScript test task.
-	grunt.registerTask( 'jstest', 'Runs all JavaScript tasks.', [ 'jsvalidate', 'jshint', 'jscs' ] );
+	grunt.registerTask( 'jstest', 'Runs all JavaScript tasks.', [ 'jsvalidate', 'jshint' ] );
 
 	// PHP test task.
 	grunt.registerTask( 'phptest', 'Runs all PHP tasks.', [ 'checktextdomain' ] );

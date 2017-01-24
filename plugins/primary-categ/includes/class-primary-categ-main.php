@@ -28,7 +28,9 @@ class Primary_Categ_Main {
 	}
 
 	/**
+	 * This generates the dropdown of all the designated primary categories.
 	 *
+	 * @param array $primary_group This is the taxonomies that will be tagged a primary group.
 	 */
 	public function display_primary_categories( $primary_group = array() ) {
 		$args = array(
