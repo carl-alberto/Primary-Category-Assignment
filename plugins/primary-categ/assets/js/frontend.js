@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 
 	$.post(ajaxurl, ajax2, function(response) {
 	console.log(response);
-		document.getElementById(".searchgroup").innerHTML = "a123sdfa adsfa s";
+		$( "#pc-searchfilter" ).html( response );
 	});
 
 	function search_string() {
@@ -16,25 +16,30 @@ jQuery(document).ready(function($) {
 	}
 
 	function search_taxo() {
-		return '&primacat=' + $( "#primacat" ).val();
-	}
-
-	$( ".search-submit" ).hover(
-		function() {
-			searchq = pc_ajax_object.site_search_url + search_string() + search_taxo() ;
-			console.log(searchq);
+		var searchsplit = $( "#alltaxonomies" ).val().split("--");
+		if ( searchsplit[0].length !=0 ) {
+			var searchfinal = "post_type=" + searchsplit[0] + '&' + searchsplit[1] + '=' + searchsplit[2];
+			return searchfinal;
+		} else {
+			return value == '';
 		}
-	);
+	}
 
 	$( ".sc-search-submit" ).click(function() {
 		if ( $( ".search-field" ).val() ) {
-			searchq = pc_ajax_object.site_search_url + search_string() + search_taxo() ;
-			window.location.href = searchq;
+			if ( $( "#alltaxonomies" ).val().length !=0  ) {
+				searchq = pc_ajax_object.site_search_url + search_string() + search_taxo() ;
+				window.location.href = searchq;
+			} else {
+				searchq = pc_ajax_object.site_search_url + search_string();
+				window.location.href = searchq;
+			}
 		} else {
-			 alert( "Please enter your search query" );
+			$( "#pc-searchfilter" ).append( "<div class='searcherror'>Enter your search query</div>" );
+			$('.searcherror').delay(1000).fadeOut('slow');
 		}
 	});
 
-	$(".search-form").after("<div id='searchgroup'>ADding dropdown</div>" );
+	$(".search-form.custom-search").after("<div id='pc-searchfilter'></div>" );
 
 });
