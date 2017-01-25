@@ -20,6 +20,7 @@
 * Category (taxonomy) filter must get all taxonomy under a CPT + post
 * Utilize the built in search mechanism of WP
 * Deploy a test server Pantheon with working code
+* Simple instruction on the plugin usage
 
 ### Test Cases
 
@@ -28,7 +29,8 @@
 * Create at least 3 CPTs
 * Add at least 2 different Primary Category (taxonomy) which is assigned to each CPT
 * Add at least 2 other extra Primary Category (taxonomy) under the regular posts & CPT which is not tagged as Primary Category
-* Make sure the taxonomy that is only tagged as primary category can be searched from the front end
+* Make sure the taxonomy that is only tagged as primary category can be searched from the front end shen searched
+* Installing the plugin from scratch should not create any errors on a different installation
 
 ### Time Tracking
 

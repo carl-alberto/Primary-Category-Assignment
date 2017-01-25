@@ -41,6 +41,10 @@ class Primary_Categ {
 
 		register_deactivation_hook( $this->file, array( $this, 'plugin_deactivated' ) );
 
+		if ( is_admin() ) {
+			$this->admin = new Primary_Categ_Admin_API();
+		}
+
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
 		$custom->quick_register_cpt( 'event', 'Events', 'Event' );
@@ -54,6 +58,7 @@ class Primary_Categ {
 		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'event', 'post', 'book' ) );
 
 		// This array defines the primary categories.
+
 		$this->primary_categories_array = array(
 			'primary-category',
 		);

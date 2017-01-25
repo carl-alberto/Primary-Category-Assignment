@@ -23,8 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Load plugin class files.
 require_once( 'includes/class-primary-categ.php' );
+require_once( 'includes/class-primary-categ-settings.php' );
 
 // Load plugin libraries.
+require_once( 'includes/lib/class-primary-categ-admin-api.php' );
 require_once( 'includes/lib/class-primary-categ-post-type.php' );
 require_once( 'includes/lib/class-primary-categ-taxonomy.php' );
 
@@ -50,6 +52,10 @@ function primary_categ() {
 		$latest_plugin_version,
 		$pluginoptions
 	);
+
+	if ( is_null( $instance->settings ) ) {
+		$instance->settings = Primary_Categ_Settings::instance( $instance );
+	}
 
 	return $instance;
 }
