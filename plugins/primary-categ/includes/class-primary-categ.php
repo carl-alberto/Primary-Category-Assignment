@@ -54,10 +54,11 @@ class Primary_Categ {
 		$custom->quick_register_cpt( 'animal', 'Animals', 'Animal' );
 
 		// Register taxonomies. This will be assigned below to be PRIMARY CATEGORIES.
-		$custom->quick_register_tax( 'primary-category', 'Primary Categories', 'Primary Category', array( 'event', 'post' ) );
+		$custom->quick_register_tax( 'primary-category', 'Primary Categories', 'Primary Category', array( 'post', 'event', 'book', 'animal' ) );
 
-		// Register taxonomies. Tagged as NON primary.
-		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'event', 'post', 'book' ) );
+		// Register additional taxonomies for testing.
+		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', arrray( 'post', 'event', 'book', 'animal' ) );
+		$custom->quick_register_tax( 'yetanothercat', 'Im a cat', 'etc', arrray( 'post', 'event', 'book', 'animal' ) );
 
 		// This array defines the primary categories.
 		$this->primary_categories_array = $this->get_all_primary_categories();
