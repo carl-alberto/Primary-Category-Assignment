@@ -58,9 +58,7 @@ class Primary_Categ {
 		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'event', 'post', 'book' ) );
 
 		// This array defines the primary categories.
-		$this->primary_categories_array = array(
-			'primary-category',
-		);
+		$this->primary_categories_array = $this->get_all_primary_categories();
 
 		// Ajax request start.
 		add_action( 'wp_ajax_pc_ajax_request', array( $this, 'pc_ajax_request' ), 0 );
@@ -74,6 +72,22 @@ class Primary_Categ {
 		// Handle localisation.
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
+	}
+
+	/**
+	 * Gets all the primary categories.
+	 */
+	public function get_all_primary_categories() {
+		$all_options = wp_load_alloptions();
+		$primary_categories_list  = array();
+		foreach ( $all_options as $name => $value ) {
+			if ( stristr( $name, 'plg1_sb_' ) ) {
+				if ( ! in_array( $value, $primary_categories_list, true ) ) {
+					$primary_categories_list[] = $value;
+				}
+			}
+		}
+		return $primary_categories_list;
 	}
 
 	/**
