@@ -108,19 +108,6 @@ class Primary_Categ_Settings {
 			$this->parent->_token . '_settings',
 			array( $this, 'settings_page' )
 		);
-		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
-	}
-
-	/**
-	 * Load settings JS & CSS.
-	 *
-	 * @return void
-	 */
-	public function settings_assets() {
-
-		// We're including the farbtastic script & styles here because they're needed for the colour picker
-		// If you're not including a colour picker field then you can leave these calls out as well as the farbtastic dependency for the wpt-admin-js script below.
-
 	}
 
 	/**
