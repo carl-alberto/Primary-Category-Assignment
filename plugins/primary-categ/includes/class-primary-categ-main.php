@@ -42,19 +42,21 @@ class Primary_Categ_Main {
 		$post_types = get_post_types( $args, $output );
 
 		echo '<select id="alltaxonomies" class="dropdown-alltaxonomies">';
-		echo sprintf( '<option value="">SELECT FILTER BELOW</option>' );
+		echo sprintf( '<option value="">NO FILTER OR SELECT FILTER BELOW</option>' );
 		foreach ( $post_types as $post_type ) {
 			$taxonomy_names = get_object_taxonomies( $post_type->name, 'objects' );
 			foreach ( $taxonomy_names as $taxonomy_name ) {
 				// We need to display taxonomies tagged as primary categories.
 				if ( in_array( $taxonomy_name->name, $primary_group, true ) ) {
-					echo sprintf( '<option disabled value="%1s">%2s(POST TYPE)</option>', esc_html( $post_type->name ), esc_html( $post_type->label ) );
 					$termitems = get_terms( array(
 						'taxonomy' => $taxonomy_name->name,
 						'hide_empty' => false,
 					) );
-					foreach ( $termitems as $term ) {
-						echo sprintf( '<option value="%1s--%2s--%3s">-%4s</option>', esc_html( $post_type->name ), esc_html( $taxonomy_name->name ), esc_html( $term->slug ), esc_html( $term->name ) );
+					if ( $termitems ) {
+						echo sprintf( '<option disabled value="%1s">%2s(POST TYPE)</option>', esc_html( $post_type->name ), esc_html( $post_type->label ) );
+						foreach ( $termitems as $term ) {
+							echo sprintf( '<option value="%1s--%2s--%3s">-%4s</option>', esc_html( $post_type->name ), esc_html( $taxonomy_name->name ), esc_html( $term->slug ), esc_html( $term->name ) );
+						}
 					}
 				}
 			}
