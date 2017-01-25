@@ -124,7 +124,7 @@ class Primary_Categ {
 		// Define your primary categories here.
 		$primary_group = $this->primary_categories_array;
 		$custom = new Primary_Categ_Main;
-		$custom->display_primary_categories( $primary_group );
+		$custom->display_primary_categories();
 		die();
 	}
 

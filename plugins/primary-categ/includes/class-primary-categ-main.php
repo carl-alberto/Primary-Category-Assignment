@@ -34,7 +34,7 @@ class Primary_Categ_Main {
 	 *
 	 * @param array $primary_group This is the taxonomies that will be tagged a primary group.
 	 */
-	public function display_primary_categories( $primary_group = array() ) {
+	public function display_primary_categories_old( $primary_group = array() ) {
 		$args = array(
 		   'public'   => true,
 		);
@@ -59,6 +59,34 @@ class Primary_Categ_Main {
 						foreach ( $termitems as $term ) {
 							echo sprintf( '<option value="%1s--%2s--%3s">-%4s</option>', esc_html( $post_type->name ), esc_html( $taxonomy_name->name ), esc_html( $term->slug ), esc_html( $term->name ) );
 						}
+					}
+				}
+			}
+		}
+		echo '</select>';
+	}
+
+	/**
+	 * This generates the dropdown of all the designated primary categories.
+	 */
+	public function display_primary_categories() {
+		$all_options = wp_load_alloptions();
+		$primary_categories_list  = array();
+		echo '<select id="alltaxonomies" class="dropdown-alltaxonomies">';
+		echo sprintf( '<option value="">NO FILTER OR SELECT A FILTER BELOW</option>' );
+		foreach ( $all_options as $name => $value ) {
+			if ( stristr( $name, 'plg1_sb_' ) ) {
+				if ( $value ) {
+					$post_typename = explode( 'plg1_sb_', $name );
+					$primary_categories_list[ $post_typename[1] ] = $value;
+					$obj = get_post_type_object( $post_typename[1] );
+					echo sprintf( '<option disabled value="%1s">%2s(POST TYPE)</option>', esc_html( $post_typename[1] ), esc_html( $obj->labels->singular_name ) );
+					$termitems = get_terms( array(
+						'taxonomy' => $value,
+						'hide_empty' => false,
+					) );
+					foreach ( $termitems as $term ) {
+						echo sprintf( '<option value="%1s--%2s--%3s">-%4s</option>', esc_html( $post_typename[1] ), esc_html( $term->taxonomy ), esc_html( $term->slug ), esc_html( $term->name ) );
 					}
 				}
 			}
