@@ -101,7 +101,13 @@ class Primary_Categ_Settings {
 	 * @return void
 	 */
 	public function add_menu_item() {
-		$page = add_options_page( __( 'Primary Category Settings', 'primary-categ' ) , __( 'Primary Categ Settings', 'primary-categ' ) , 'manage_options' , $this->parent->_token . '_settings' ,  array( $this, 'settings_page' ) );
+		$page = add_options_page(
+			__( 'Primary Category Settings', 'primary-categ' ),
+			__( 'Primary Category Settings', 'primary-categ' ),
+			'manage_options',
+			$this->parent->_token . '_settings',
+			array( $this, 'settings_page' )
+		);
 		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
 	}
 
@@ -239,8 +245,8 @@ class Primary_Categ_Settings {
 		$this->get_all_categories();
 
 		$settings['standard'] = array(
-			'title'					=> __( 'Posts & Custom Post Types', 'primary-categ' ),
-			'description'			=> __( 'This will dynamically display your Post and Custom Post Types and its related Primary Categories assigned.', 'primary-categ' ),
+			'title'					=> __( 'Posts & Custom Post Types List', 'primary-categ' ),
+			'description'			=> __( 'This will dynamically display your Post and Custom Post Types and its assigned Primary Category. Only one Primary Category can be assigned for each post type.', 'primary-categ' ),
 			'fields'				=> $this->get_all_cpt(),
 		);
 
@@ -319,7 +325,7 @@ class Primary_Categ_Settings {
 
 		// Build page HTML.
 		$html = '<div class="wrap" id="' . $this->parent->_token . '_settings">' . "\n";
-		$html .= '<h2>' . __( 'Primary Categ Settings' , 'primary-categ' ) . '</h2>' . "\n";
+		$html .= '<h2>' . __( 'Primary Category Settings' , 'primary-categ' ) . '</h2>' . "\n";
 
 		$tab = '';
 		if ( isset( $_GET['tab'] ) && $_GET['tab'] ) { // @codingStandardsIgnoreLine

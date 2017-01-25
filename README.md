@@ -24,9 +24,9 @@
 
 ### Test Cases
 
-* Shortcode to generate the custom search box [sc_quick_search_mod] **-DONE**
-* Added shortcode to a test page **-DONE**
-* Create at least 3 CPTs
+* Shortcode to generate the custom search box [sc_quick_search_mod] ** -DONE**
+* Added shortcode to a test page ** -DONE**
+* Test against 3 CPTs ** -DONE**
 * Add at least 2 different Primary Category (taxonomy) which is assigned to each CPT
 * Add at least 2 other extra Primary Category (taxonomy) under the regular posts & CPT which is not tagged as Primary Category
 * Make sure the taxonomy that is only tagged as primary category can be searched from the front end shen searched
