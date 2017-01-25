@@ -13,7 +13,7 @@ jQuery( document ).ready(function( $ ) {
 	});
 
 	function SearchString() {
-		return '/?q=' + $( '.search-field' ).val();
+		return '/?s=' + $( '.search-field' ).val();
 	}
 
 	function SearchTaxonomy() {
