@@ -20,7 +20,7 @@ jQuery( document ).ready(function( $ ) {
 		var searchsplit = $( '#alltaxonomies' ).val().split( '--' );
 		var searchfinal;
 		if ( searchsplit[0].length !== 0 ) {
-			searchfinal = '&post_type=' + searchsplit[0] + '&' + searchsplit[1] + '=' + searchsplit[2];
+			searchfinal = 'post_type=' + searchsplit[0] + '&' + searchsplit[1] + '=' + searchsplit[2];
 			return searchfinal;
 		}
 	}
@@ -28,15 +28,21 @@ jQuery( document ).ready(function( $ ) {
 	$( '.sc-search-submit' ).click(function() {
 		if ( $( '.search-field' ).val() ) {
 			if ( $( '#alltaxonomies' ).val().length !== 0  ) {
-				searchq = sitesearchurl + SearchString() + SearchTaxonomy() ;
+				searchq = sitesearchurl + SearchString() + '&' + SearchTaxonomy() ;
 				window.location.href = searchq;
 			} else {
 				searchq = sitesearchurl + SearchString();
 				window.location.href = searchq;
 			}
 		} else {
-			$( '#pc-searchfilter' ).append( '<div class="searcherror">Enter your search query</div>' );
-			$( '.searcherror' ).delay( 1000 ).fadeOut( 'slow' );
+			if ( $( '#alltaxonomies' ).val().length !== 0  ) {
+				searchq = sitesearchurl + '/?' + SearchTaxonomy() ;
+				window.location.href = searchq;
+			} else {
+				$( '#pc-searchfilter' ).append( '<div class="searcherror">Enter your search query or select at least one Primary Category to show all items under that category</div>' );
+				$( '.searcherror' ).delay( 5000 ).fadeOut( 'slow' );
+			}
+
 		}
 	});
 

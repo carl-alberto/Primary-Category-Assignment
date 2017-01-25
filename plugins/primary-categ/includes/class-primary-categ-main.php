@@ -23,7 +23,7 @@ class Primary_Categ_Main {
 				Enter your search query below. You can only filter Post types that has an assigned Primary Category. The Custom post type will not appear below if it doesn;t have an assigned Primary Category.
 			</div>
 			<div class="search-form custom-search">
-				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="" />
+				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search by Primary Category or by keyword&hellip;', 'placeholder', 'primary-categ' ); ?>" value="" />
 				<button type="submit" class="sc-search-submit search-submit"><?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?></button>
 			</div>
 		<?php
@@ -44,7 +44,7 @@ class Primary_Categ_Main {
 		$post_types = get_post_types( $args, $output );
 
 		echo '<select id="alltaxonomies" class="dropdown-alltaxonomies">';
-		echo sprintf( '<option value="">NO FILTER OR SELECT FILTER BELOW</option>' );
+		echo sprintf( '<option value="">NO FILTER OR SELECT A FILTER BELOW</option>' );
 		foreach ( $post_types as $post_type ) {
 			$taxonomy_names = get_object_taxonomies( $post_type->name, 'objects' );
 			foreach ( $taxonomy_names as $taxonomy_name ) {
