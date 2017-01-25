@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Primary Categ
+ * Plugin Name: Primary Categories
  * Version: 1.0.0
  * Plugin URI: https://carl.alber2.com/
- * Description: This is your starter template for your next WordPress plugin.
+ * Description: You can assign one Primary Categories ( Taxonomy ) to your Posts and Custom Post Types. Please visit the Settings to get started.
  * Author: Carl Alberto
  * Author URI: https://carl.alber2.com/
  * Requires at least: 4.0

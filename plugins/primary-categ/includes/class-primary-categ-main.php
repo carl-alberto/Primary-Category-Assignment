@@ -19,7 +19,9 @@ class Primary_Categ_Main {
 	 * Generates a shortcode the custom searchbar.
 	 */
 	public function quick_search_mod() {
-		?>
+		?>	<div class="search-instructions">
+				Enter your search query below. You can only filter Post types that has an assigned Primary Category. The Custom post type will not appear below if it doesn;t have an assigned Primary Category.
+			</div>
 			<div class="search-form custom-search">
 				<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?>" value="" />
 				<button type="submit" class="sc-search-submit search-submit"><?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'primary-categ' ); ?></button>

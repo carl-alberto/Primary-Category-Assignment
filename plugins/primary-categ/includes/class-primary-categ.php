@@ -39,6 +39,8 @@ class Primary_Categ {
 
 		$this->script_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
+		register_activation_hook( $this->file, array( $this, 'pc_activate_plugin' ) );
+
 		register_deactivation_hook( $this->file, array( $this, 'plugin_deactivated' ) );
 
 		if ( is_admin() ) {
@@ -72,6 +74,28 @@ class Primary_Categ {
 		// Handle localisation.
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
+	}
+
+	/**
+	 * Installation. Runs on activation.
+	 * If reset option is still new meaning this is the first time th plugins is installed, it will call all the default values.
+	 *
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function pc_activate_plugin() {
+		add_action( 'admin_notices', array( $this, 'install_instruction_notice' ), 999 );
+		$this->_log_version_number();
+	} // End install ()
+
+	/**
+	 * Displays an instruction message when the plugin is installed.
+	 */
+	public function install_instruction_notice() {
+		$class = 'updated notice is-dismissible';
+		$message = __( 'You have installed the plugin, Please go to the settings page to start configuring the plugin.', 'primary-categ' );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
 	}
 
 	/**
