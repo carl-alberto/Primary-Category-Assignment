@@ -183,11 +183,9 @@ class Primary_Categ_Settings {
 	 * This will load the primary category if there is currently saved.
 	 *
 	 * @param string $taxonomy_name Name of option.
-	 * @return string Returns the selected value in the option if there is. Default to null if not found.
 	 */
 	public function assign_primary_categories( $taxonomy_name ) {
 		$this->primary_categories_array = $taxonomy_name;
-		return $this->primary_categories_array;
 	}
 
 	/**
@@ -200,7 +198,6 @@ class Primary_Categ_Settings {
 		   'public'   => true,
 		   '_builtin' => false,
 		);
-
 		$output = 'object';
 		$operator = 'and';
 		$post_types = get_post_types( $args, $output );

@@ -58,7 +58,6 @@ class Primary_Categ {
 		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'event', 'post', 'book' ) );
 
 		// This array defines the primary categories.
-
 		$this->primary_categories_array = array(
 			'primary-category',
 		);
