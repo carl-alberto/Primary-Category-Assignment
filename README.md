@@ -29,8 +29,11 @@
 * Test against 3 CPTs ** -DONE**
 * Add at least 2 different Primary Category (taxonomy) which is assigned to each CPT
 * Add at least 2 other extra Primary Category (taxonomy) under the regular posts & CPT which is not tagged as Primary Category
-* Make sure the taxonomy that is only tagged as primary category can be searched from the front end shen searched
-* Installing the plugin from scratch should not create any errors on a different installation
+* Make sure the taxonomy that is only tagged as primary category can be searched from the front end when searched
+* Installing the plugin from scratch/new installation  should not create any errors on a different installation
+* Test local
+* Test live server
+* Test with permalinks
 
 ### Time Tracking
 
