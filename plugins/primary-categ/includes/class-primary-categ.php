@@ -49,16 +49,26 @@ class Primary_Categ {
 
 		// Adding a primamry Category for a sample post type called 'event'.
 		$custom = new Primary_Categ_Main;
-		$custom->quick_register_cpt( 'event', 'Events', 'Event' );
-		$custom->quick_register_cpt( 'book', 'Books', 'Book' );
 		$custom->quick_register_cpt( 'animal', 'Animals', 'Animal' );
 
-		// Register taxonomies. This will be assigned below to be PRIMARY CATEGORIES.
-		$custom->quick_register_tax( 'primary-category', 'Primary Categories', 'Primary Category', array( 'post', 'event', 'book', 'animal' ) );
+		$custom->quick_register_cpt( 'show', 'Shows', 'Show' );
+
+		$custom->quick_register_cpt( 'place', 'Places', 'Place' );
 
 		// Register additional taxonomies for testing.
-		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'post', 'event', 'book', 'animal' ) );
-		$custom->quick_register_tax( 'yetanothercat', 'Im a cat', 'etc', array( 'post', 'event', 'book', 'animal' ) );
+		$custom->quick_register_tax( 'kingdom', 'Kingdoms', 'Kingdom', array( 'animal' ) );
+		$custom->quick_register_tax( 'habitat', 'Habitats', 'Habitat', array( 'animal' ) );
+		$custom->quick_register_tax( 'diet', 'Diet', 'Diet', array( 'animal' ) );
+
+		$custom->quick_register_tax( 'genre', 'Genre', 'Genre', array( 'show' ) );
+		$custom->quick_register_tax( 'show-type', 'Show Type', 'Show Type', array( 'show' ) );
+
+		$custom->quick_register_tax( 'country', 'Country', 'Country', array( 'place' ) );
+		$custom->quick_register_tax( 'continent', 'Continent', 'Continent', array( 'place' ) );
+		$custom->quick_register_tax( 'goverment', 'Goverment', 'Goverment', array( 'place' ) );
+
+		// Register taxonomies for testing to all CPTs.
+		$custom->quick_register_tax( 'test-category', 'Test Categories', 'Test Category', array( 'post', 'animal' ) );
 
 		// This array defines the primary categories.
 		$this->primary_categories_array = $this->get_all_primary_categories();

@@ -27,8 +27,6 @@
 * Shortcode to generate the custom search box [sc_quick_search_mod] ** -DONE**
 * Added shortcode to a test page ** -DONE**
 * Test against 3 CPTs ** -DONE**
-* Test localhost
-* Test live server
 * Installing the plugin from scratch/new installation  should not create any errors on a different installation
 * Add at least 2 different Primary Category (taxonomy) which is assigned to each CPT
 * Add at least 2 other extra Primary Category (taxonomy) under the regular posts & CPT which is not tagged as Primary Category
@@ -39,6 +37,8 @@
 * Search with a search term without category ** -DONE**
 * Search without a search term with a category, should return all
 * Search without a search term without category, should return an error ** -DONE**
+* Test localhost ** -DONE**
+* Test remote server
 
 ### Time Tracking
 
