@@ -148,6 +148,23 @@ class Primary_Categ_Settings {
 	}
 
 	/**
+	 * Add settings link to plugin list table.
+	 *
+	 * @param array $post_type Post type to display all taxonomy.
+	 * @return array $taxo_array Modified links.
+	 */
+	public function get_all_categories_bycpt( $post_type ) {
+		$taxonomy_objects = get_object_taxonomies( $post_type, 'objects' );
+		$taxo_array = array();
+		$taxo_array[''] = 'No Primary Category Assigned yet';
+
+		foreach ( $taxonomy_objects as $term ) {
+			$taxo_array[ $term->name ] = $term->label;
+		}
+		return $taxo_array;
+	}
+
+	/**
 	 * This will load the primary category if there is currently saved.
 	 *
 	 * @param string $option_name Name of option.
@@ -156,9 +173,6 @@ class Primary_Categ_Settings {
 	public function cpt_has_primary_assigned( $option_name = '' ) {
 		if ( get_option( $option_name ) ) {
 			$option_isset = get_option( $option_name );
-
-			$this->assign_primary_categories( 'asdf' );
-
 			return $option_isset;
 		}
 		return null;
@@ -195,7 +209,7 @@ class Primary_Categ_Settings {
 			'label'			=> $defaultpost . ' CPT',
 			'description'	=> 'Select a Primary Category to be assigned to your ' . $defaultpost,
 			'type'			=> 'select',
-			'options'		=> $this->get_all_categories(),
+			'options'		=> $this->get_all_categories_bycpt( $defaultpost ),
 			'default'		=> $this->cpt_has_primary_assigned( $optionidname ),
 		);
 
@@ -207,7 +221,7 @@ class Primary_Categ_Settings {
 				'label'			=> $post_type->label . ' CPT',
 				'description'	=> 'Select a Primary Category to be assigned to your ' . $post_type->label,
 				'type'			=> 'select',
-				'options'		=> $this->get_all_categories(),
+				'options'		=> $this->get_all_categories_bycpt( $post_type->name ),
 				'default'		=> $this->cpt_has_primary_assigned( $optionidname ),
 			);
 		}
