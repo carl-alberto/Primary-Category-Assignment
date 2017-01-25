@@ -57,8 +57,8 @@ class Primary_Categ {
 		$custom->quick_register_tax( 'primary-category', 'Primary Categories', 'Primary Category', array( 'post', 'event', 'book', 'animal' ) );
 
 		// Register additional taxonomies for testing.
-		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', arrray( 'post', 'event', 'book', 'animal' ) );
-		$custom->quick_register_tax( 'yetanothercat', 'Im a cat', 'etc', arrray( 'post', 'event', 'book', 'animal' ) );
+		$custom->quick_register_tax( 'nonprimarycat', 'Non Primary Categories', 'Non Primary Category', array( 'post', 'event', 'book', 'animal' ) );
+		$custom->quick_register_tax( 'yetanothercat', 'Im a cat', 'etc', array( 'post', 'event', 'book', 'animal' ) );
 
 		// This array defines the primary categories.
 		$this->primary_categories_array = $this->get_all_primary_categories();
